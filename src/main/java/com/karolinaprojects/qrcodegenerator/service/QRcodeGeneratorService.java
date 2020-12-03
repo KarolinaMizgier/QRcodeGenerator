@@ -9,13 +9,12 @@ import java.util.UUID;
 
 @Service
 public class QRcodeGeneratorService {
-    public byte[] generateQRCodeImage() {
+    public byte[] generateQRCodeImage(int width, int height, UUID uuid) {
         ByteArrayOutputStream stream = QRCode
-                .from(UUID.randomUUID().toString())
-                .withSize(250, 250)
+                .from(uuid.toString())
+                .withSize(width, height)
                 .stream();
         ByteArrayInputStream bis = new ByteArrayInputStream(stream.toByteArray());
-
         return bis.readAllBytes();
     }
 
